@@ -1,0 +1,64 @@
+bin_PROGRAMS = dmabuf-test-fs
+
+AM_CFLAGS = -Wall -O3 -I./protocol/
+
+BUILT_SOURCES = \
+	protocol/xdg-shell-unstable-v6-protocol.c \
+	protocol/xdg-shell-unstable-v6-client-protocol.h \
+	protocol/fullscreen-shell-unstable-v1-protocol.c \
+	protocol/fullscreen-shell-unstable-v1-client-protocol.h \
+	protocol/linux-dmabuf-unstable-v1-protocol.c \
+	protocol/linux-dmabuf-unstable-v1-client-protocol.h \
+	protocol/viewporter-protocol.c \
+	protocol/viewporter-client-protocol.h
+
+CLEANFILES = $(BUILT_SOURCES)
+
+dmabuf_test_fs_SOURCES = \
+	main.c \
+	protocol/xdg-shell-unstable-v6-protocol.c \
+	protocol/fullscreen-shell-unstable-v1-protocol.c \
+	protocol/linux-dmabuf-unstable-v1-protocol.c \
+	protocol/viewporter-protocol.c \
+	./shared/os-compatibility.c
+
+dmabuf_test_fs_LDADD = \
+        $(AM_LDADD) \
+        @DRM_LIBS@ \
+	@KMS_LIBS@ \
+        @WAYLAND_CLIENT_LIBS@
+
+dmabuf_test_fs_CFLAGS = \
+        $(AM_CFLAGS) \
+        @DRM_CFLAGS@ \
+	@KMS_CFLAGS@ \
+        @WAYLAND_CLIENT_CFLAGS@
+
+.SECONDEXPANSION:
+
+define protostability
+$(if $(findstring unstable,$1),unstable,stable)
+endef
+
+define protoname
+$(shell echo $1 | sed 's/\([a-z\-]\+\)-[a-z]\+-v[0-9]\+/\1/')
+endef
+
+protocol/%-protocol.c : $(WAYLAND_PROTOCOLS_DATADIR)/$$(call protostability,$$*)/$$(call protoname,$$*)/$$*.xml
+	$(AM_V_GEN)$(MKDIR_P) $(dir $@) && $(wayland_scanner) code < $< > $@
+
+protocol/%-server-protocol.h : $(WAYLAND_PROTOCOLS_DATADIR)/$$(call protostability,$$*)/$$(call protoname,$$*)/$$*.xml
+	$(AM_V_GEN)$(MKDIR_P) $(dir $@) && $(wayland_scanner) server-header < $< > $@
+
+protocol/%-client-protocol.h : $(WAYLAND_PROTOCOLS_DATADIR)/$$(call protostability,$$*)/$$(call protoname,$$*)/$$*.xml
+	$(AM_V_GEN)$(MKDIR_P) $(dir $@) && $(wayland_scanner) client-header < $< > $@
+
+protocol/%-protocol.c : $(top_srcdir)/protocol/%.xml
+	$(AM_V_GEN)$(MKDIR_P) $(dir $@) && $(wayland_scanner) code < $< > $@
+
+protocol/%-server-protocol.h : $(top_srcdir)/protocol/%.xml
+	$(AM_V_GEN)$(MKDIR_P) $(dir $@) && $(wayland_scanner) server-header < $< > $@
+
+protocol/%-client-protocol.h : $(top_srcdir)/protocol/%.xml
+	$(AM_V_GEN)$(MKDIR_P) $(dir $@) && $(wayland_scanner) client-header < $< > $@
+
