@@ -54,7 +54,7 @@ cd ${WORK}/
 sh meta-renesas/meta-rcar-gen3/docs/sample/copyscript/copy_proprietary_softwares.sh -f ${WORK_PROP_DIR}
 
 cd ${WORK}
-source poky/oe-init-build-env ${WORK}/build
+source poky/oe-init-build-env 
 
 cp ${WORK}/meta-renesas/meta-rcar-gen3/docs/sample/conf/${TARGET_BOARD}/poky-gcc/bsp/*.conf ${WORK}/build/conf
 
@@ -65,4 +65,5 @@ cd ${WORK}/build
 cp conf/local-wayland.conf conf/local.conf
 
 bitbake core-image-weston
-cp ${WORK}/build * ${TARGET_DIR}
+cp -r ${WORK}/build/* ${TARGET_DIR}
+
