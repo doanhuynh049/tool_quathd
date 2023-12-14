@@ -67,5 +67,5 @@ cp "${TARGET_DIR}/conf/local-wayland.conf" "${TARGET_DIR}/conf/local.conf"
 
 # Building with bitbake
 cd "${TARGET_DIR}"
-bitbake core-image-weston
+#bitbake core-image-weston
 
