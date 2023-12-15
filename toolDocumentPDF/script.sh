@@ -1,11 +1,5 @@
 #!/bin/bash
-for i in {1..11}
-do
-	echo "Running pdf $i....." 
-	./create_pdf_v3.sh $i
-done
-
-
+numberoffile=18
 # Function to copy file to the corresponding folder
 copy_file_to_folder() {
     local file=$1
@@ -60,3 +54,27 @@ for file in *.pdf; do
         copy_file_to_folder "$file"
     fi
 done
+
+
+
+
+
+# Check if an argument is provided
+if [ $# -eq 1 ]; then
+    # Process only the specific PDF creation
+    file_number=$1
+    if (( file_number >= 1 && file_number <= $numberoffile )); then
+        echo "Running pdf $file_number....."
+        ./create_pdf_v3.sh $file_number
+    else
+        echo "Invalid file number. Please enter a number between 1 and 11."
+        exit 1
+    fi
+else
+    # Process all PDF creations
+    for i in {1..$numberoffile}
+    do
+        echo "Running pdf $i....."
+        ./create_pdf_v3.sh $i
+    done
+fi

@@ -53,49 +53,76 @@
 #   - Update information for common input pdf files. Use their original name
 
 ### USER INPUT ###
-INPUT_DIR1="/home/quathd/rvc/TaskDocument/pm/pdf_files"
-INPUT_DIR2="/home/quathd/rvc/TaskDocument/thermal/pdf_files"
-INPUT_DIR3="/home/quathd/rvc/TaskDocument/cmem/pdf_files"
-INPUT_DIR4="/home/quathd/rvc/TaskDocument/display/pdf_files"
-INPUT_DIR5="/home/quathd/rvc/TaskDocument/dmae/pdf_files"
-INPUT_DIR6="/home/quathd/rvc/TaskDocument/gpio/pdf_files"
-INPUT_DIR7="/home/quathd/rvc/TaskDocument/i2c/pdf_files"
-INPUT_DIR8="/home/quathd/rvc/TaskDocument/ipmmu/pdf_files"
-INPUT_DIR9="/home/quathd/rvc/TaskDocument/msiof/pdf_files"
-INPUT_DIR10="/home/quathd/rvc/TaskDocument/pwm/pdf_files"
-INPUT_DIR11="/home/quathd/rvc/TaskDocument/audio/pdf_files"
+WORK=$(pwd)
+INPUT_DIRS=("pm/pdf_files"
+"thermal/pdf_files"
+"cmem/pdf_files"
+"display/pdf_files"
+"dmae/pdf_files"
+"gpio/pdf_files"
+"i2c/pdf_files"
+"ipmmu/pdf_files"
+"msiof/pdf_files"
+"pwm/pdf_files"
+"audio/pdf_files"
+"vin/pdf_files"
+"v4l2/pdf_files"
+"bsp/pdf_files"
+"mmngr/pdf_files"
+"vspm/pdf_files"
+"mmngr_release/pdf_files"
+"v4l2_vspm_release/pdf_files")
 
-OUTPUT_PDF1="RENESAS_RCH3M3M3NE3D3V3UV3HV3M_PowerManagement_UME_v3.1.0.pdf"
-OUTPUT_PDF2="RENESAS_RCH3M3M3NE3D3V3H_ThermalDriver_UME_v3.1.0.pdf"
-OUTPUT_PDF3="RENESAS_RCH3M3M3NE3D3V3UV3HV3M_CMEM_UME_v3.1.0.pdf"
-OUTPUT_PDF4="RENESAS_RCH3M3M3NE3D3V3UV3H_Display_UME_v3.1.0.pdf"
-OUTPUT_PDF5="RENESAS_RCH3M3M3NE3D3V3UV3H_DMAE_UME_v3.1.0.pdf"
-OUTPUT_PDF6="RENESAS_RCH3M3M3NE3D3V3UV3H_GPIO_UME_v3.1.0.pdf"
-OUTPUT_PDF7="RENESAS_RCH3M3M3NE3D3V3UV3H_I2C_UME_v3.1.0.pdf"
-OUTPUT_PDF8="RENESAS_RCH3M3M3NE3D3V3UV3H_IPMMU_UME_v3.1.0.pdf"
-OUTPUT_PDF9="RENESAS_RCH3M3M3NE3D3V3UV3H_MSIOF_UME_v3.1.0.pdf"
-OUTPUT_PDF10="RENESAS_RCH3M3M3NE3D3V3UV3H_PWM_UME_v3.1.0.pdf"
-OUTPUT_PDF11="RENESAS_RCH3M3M3NE3D3_Audio_UME_v3.1.0.pdf"
 
-TITLE_NAME1="R-Car Series Linux Interface Specification Power Management User’s Manual: Software"
-TITLE_NAME2="R-Car Series Linux Interface Specification Device Driver Thermal Sensor User’s Manual: Software"
-TITLE_NAME3="R-Car Series Linux Interface Specification Device Driver CMEM for Linux User’s Manual: Software"
-TITLE_NAME4="R-Car Series Linux Interface Specification Device Driver Display User’s Manual: Software"
-TITLE_NAME5="R-Car Series Linux Interface Specification Device Driver DMA Engine User’s Manual: Software"
-TITLE_NAME6="R-Car Series Linux Interface Specification Device Driver GPIO  User’s Manual: Software"
-TITLE_NAME7="R-Car Series Linux Interface Specification Device Driver I2C  User’s Manual: Software"
-TITLE_NAME8="R-Car Series Linux Interface Specification Device Driver IPMMU  User’s Manual: Software"
-TITLE_NAME9="R-Car Series Linux Interface Specification Device Driver IPMMU  User’s Manual: Software"
-TITLE_NAME10="R-Car Series Linux Interface Specification Device Driver PWM  User’s Manual: Software"
-TITLE_NAME11="R-Car Series Linux Interface Specification Device Driver Audio User’s Manual: Software"
+OUTPUT_PDFS=("RENESAS_RCH3M3M3NE3D3V3UV3HV3M_PowerManagement_UME_v3.1.0.pdf" 
+"RENESAS_RCH3M3M3NE3D3V3H_ThermalDriver_UME_v3.1.0.pdf" 
+"RENESAS_RCH3M3M3NE3D3V3UV3HV3M_CMEM_UME_v3.1.0.pdf"
+"RENESAS_RCH3M3M3NE3D3V3UV3H_Display_UME_v3.1.0.pdf"
+"RENESAS_RCH3M3M3NE3D3V3UV3H_DMAE_UME_v3.1.0.pdf"
+"RENESAS_RCH3M3M3NE3D3V3UV3H_GPIO_UME_v3.1.0.pdf"
+"RENESAS_RCH3M3M3NE3D3V3UV3H_I2C_UME_v3.1.0.pdf"
+"RENESAS_RCH3M3M3NE3D3V3UV3H_IPMMU_UME_v3.1.0.pdf"
+"RENESAS_RCH3M3M3NE3D3V3UV3H_MSIOF_UME_v3.1.0.pdf"
+"RENESAS_RCH3M3M3NE3D3V3UV3H_PWM_UME_v3.1.0.pdf"
+"RENESAS_RCH3M3M3NE3D3_Audio_UME_v3.1.0.pdf"
+"RENESAS_RCH3M3M3NE3D3V3UV3H_VideoCapture_UME_v3.1.0.pdf"
+"RENESAS_RCH3M3M3NE3_V4L2_UME_v3.1.0.pdf"
+"RENESAS_RCH3M3M3NE3D3_BSP_ReleaseNote_E_v5.3.0.pdf"
+"RENESAS_RCH3M3M3NE3_MMP_MMNGR_Linux_UME_v3.1.0.pdf"
+"RENESAS_RCH3M3M3NE3_VSPM_UME_v3.1.0.pdf"
+"RENESAS_RCH3M3M3NE3_MMP_MMNGR_Linux_ReleaseNote_E_v5.9.3.pdf"
+"RENESAS_RCH3M3M3NE3_V4L2_VSPM_ReleaseNote_E_v5.9.3.pdf"
+)
 
-INPUT_DIR="INPUT_DIR$1"
-INPUT_DIR=${!INPUT_DIR}
+TITLE_NAMES=("R-Car Series Linux Interface Specification Power Management User’s Manual: Software"
+"R-Car Series Linux Interface Specification Device Driver Thermal Sensor User’s Manual: Software"
+"R-Car Series Linux Interface Specification Device Driver CMEM for Linux User’s Manual: Software"
+"R-Car Series Linux Interface Specification Device Driver Display User’s Manual: Software"
+"R-Car Series Linux Interface Specification Device Driver DMA Engine User’s Manual: Software"
+"R-Car Series Linux Interface Specification Device Driver GPIO User’s Manual: Software"
+"R-Car Series Linux Interface Specification Device Driver I2C User’s Manual: Software"
+"R-Car Series Linux Interface Specification Device Driver IPMMU User’s Manual: Software"
+"R-Car Series Linux Interface Specification Device Driver MSIOF User’s Manual: Software"
+"R-Car Series Linux Interface Specification Device Driver PWM User’s Manual: Software"
+"R-Car Series Linux Interface Specification Device Driver Audio User’s Manual: Software" 
+"R-Car Series Linux Interface Specification Device Driver Video Capture User’s Manual: Software"
+"R-Car Series Linux Interface Specification Device Driver V4L2 User’s Manual: Software"
+"R-Car Series Linux Interface Specification BSP Release Note: Software"
+"R-Car Series Memory Manager for Linux User’s Manual: Software"
+"R-Car Series VSP Manager for Linux User’s Manual: Software"
+"R-Car Series Memory Manager for Linux Release Note: Software"
+"R-Car Series Linux Interface Specification Device Driver V4L2/VSPM Release Note: Software"
+)
+
+
+# MAIN LOGIC
+index=$1
+INPUT_DIR="$WORK/${INPUT_DIRS[$((index - 1))]}"
 echo $INPUT_DIR
-OUTPUT_PDF="OUTPUT_PDF$1"
-OUTPUT_PDF=${!OUTPUT_PDF}
-TITLE_NAME="TITLE_NAME$1"
-TITLE_NAME=${!TITLE_NAME}
+OUTPUT_PDF="${OUTPUT_PDFS[$((index - 1))]}"
+TITLE_NAME="${TITLE_NAMES[$((index - 1))]}"
+
+
 
 input_pdf=(
 	'01_Cover.pdf'
