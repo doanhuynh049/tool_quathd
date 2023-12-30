@@ -1,0 +1,57 @@
+setsync 1
+
+;;##########
+
+ENV_ETHADDR="2E:09:0A:03:87:D4"
+ENV_SERVERIP="192.168.0.2"
+ENV_IPADDR="192.168.0.26"
+ROOTFS="tftpboot/HVN/1st-Commit/MMP_rc3/E3/rfs"
+IMAGE_DIR="HVN/1st-Commit/MMP_rc3/E3"
+LOGIN = 'ebisu login:'
+SHELL = 'root@ebisu:~#'
+CMD = 'echo -n -e "\e[9;0]" > /dev/tty0'
+
+;;##########
+
+sendln "setenv ethaddr " ENV_ETHADDR
+waitregex "=> "
+
+sendln "setenv serverip " ENV_SERVERIP
+waitregex "=> "
+
+sendln "setenv ipaddr " ENV_IPADDR
+waitregex "=> "
+
+
+sendln "setenv bootargs 'rw root=/dev/nfs nfsroot=" ENV_SERVERIP ":/" ROOTFS ",nfsvers=4 ip=" ENV_IPADDR "'"
+
+waitregex "=> "
+
+sendln "setenv bootcmd 'tftp 0x48080000 " IMAGE_DIR "/Image; tftp 0x48000000 " IMAGE_DIR "/r8a77990-ebisu-4d.dtb; booti 0x48080000 - 0x48000000'"
+
+waitregex "=> "
+sendln "saveenv"
+
+;sendln "tftp 0x48080000 " ROOTFS "/Image"
+waitregex "=> "
+;
+;sendln "tftp 0x48000000 " ROOTFS "/r8a77990-ebisu.dtb"
+;waitregex "=> "
+;
+;sendln "booti 0x48080000 - 0x48000000"
+;sendln "
+sendln "run bootcmd"
+
+waitregex LOGIN
+sendln "root"
+
+waitregex SHELL
+
+getdate datestr "%Y%m%d"
+sendln "date +%Y%m%d -s" datestr
+waitregex SHELL
+
+getdate datestr "%H:%M:%S"
+waitregex SHELL
+sendln "date +%T -s" datestr
+

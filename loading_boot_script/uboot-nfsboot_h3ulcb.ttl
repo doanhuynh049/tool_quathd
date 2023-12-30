@@ -1,0 +1,59 @@
+setsync 1
+
+;;##########
+
+;ENV_ETHADDR="2e:09:0a:00:c0:68"
+ENV_ETHADDR="2E:09:0A:00:C3:9A"
+ENV_SERVERIP="192.168.0.3"
+ENV_IPADDR="192.168.0.23"
+ROOTFS="tftpboot/HVN/hung/h3-rc3/rfs-org"
+IMAGE_DIR="HVN/hung/h3-rc3"
+LOGIN = 'salvator-x login:'
+SHELL = 'root@salvator-x:~#'
+CMD = 'echo -n -e "\e[9;0]" > /dev/tty0'
+
+;;##########
+
+
+;sendln "setenv ethaddr " ENV_ETHADDR
+;waitregex "=> "
+
+sendln "setenv serverip " ENV_SERVERIP
+waitregex "=> "
+
+sendln "setenv ipaddr " ENV_IPADDR
+waitregex "=> "
+
+sendln "setenv bootargs 'root=/dev/nfs nfsroot=" ENV_SERVERIP ":/" ROOTFS ",nfsvers=4 ip=" ENV_IPADDR " debug'"
+; sendln "setenv bootargs 'rw consoleblank=0 video=HDMI-A-1:1920x1080-32@60 root=/dev/nfs nfsroot=" ENV_SERVERIP ":/tftpboot/" ROOTFS " ip=" ENV_IPADDR "'""
+; sendln "setenv bootargs 'root=/dev/nfs nfsroot=" ENV_SERVERIP ":/tftpboot/" ROOTFS ",nfsvers=4 ip=" ENV_IPADDR "'"
+
+waitregex "=> "
+
+sendln "setenv bootcmd 'tftp 0x48080000 " IMAGE_DIR "/Image; tftp 0x48000000 " IMAGE_DIR "/r8a77951-salvator-xs.dtb; booti 0x48080000 - 0x48000000'"
+waitregex "=> "
+sendln "saveenv"
+
+;sendln "tftp 0x48080000 " IMAGE_DIR "/Image"
+waitregex "=> "
+;
+;sendln "tftp 0x48000000 " ROOTFS "/Image-r8a7795-es1-salvator-x.dtb"
+;waitregex "=> "
+;
+;sendln "booti 0x48080000 - 0x48000000"
+;sendln "
+sendln "run bootcmd"
+
+waitregex LOGIN
+sendln "root"
+
+waitregex "root@salvator-x:~#"
+
+getdate datestr "%Y%m%d"
+sendln "date +%Y%m%d -s" datestr
+waitregex "root@salvator-x:~#"
+
+getdate datestr "%H:%M:%S"
+waitregex "root@salvator-x:~#"
+sendln "date +%T -s" datestr
+
