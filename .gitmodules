@@ -13,3 +13,6 @@
 [submodule "poky"]
 	path = poky
 	url = https://github.com/yoctoproject/poky.git
+[submodule "tool_rvc_rcar2"]
+	path = tool_rvc_rcar2
+	url = https://github.com/doanhuynh049/tool_quathd.git
