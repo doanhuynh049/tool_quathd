@@ -1,0 +1,14 @@
+1 AVB Streaming Driver 
+https://github.com/renesas-rcar/avb-streaming 
+671bf9c3249551cb182ff23fa67da4844098bd24
+
+2 Media Streaming Engine
+https://github.com/renesas-rcar/avb-mse 
+47eee6031ee5514204ca51cf8ab2b74631ccdb22
+
+3 Media Clock Recovery Handler
+https://github.com/renesas-rcar/avb-mch 
+b234c4c867e9e4b9cc7cb00f483a43a36e3d3427
++ apply patch file: 0001_fix_mch_open_wrong_initialization_order.patch (attachment)
+How to apply:
+patch -p1 < 0001_fix_mch_open_wrong_initialization_order.patch
