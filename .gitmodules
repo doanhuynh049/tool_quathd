@@ -10,3 +10,6 @@
 [submodule "my_poky"]
 	path = my_poky
 	url = git@github.com:yoctoproject/poky.git
+[submodule "poky"]
+	path = poky
+	url = https://github.com/yoctoproject/poky.git
