@@ -3,7 +3,7 @@
 	url = https://github.com/doanhuynh049/build_kernel_module.git
 [submodule "meta-openembedded"]
 	path = meta-openembedded
-	url = git://git.openembedded.org/meta-openembedded
+	url = https://github.com/openembedded/meta-openembedded.git
 [submodule "meta-renesas"]
 	path = meta-renesas
 	url = https://github.com/renesas-rcar/meta-renesas
