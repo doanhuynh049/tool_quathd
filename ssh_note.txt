@@ -1,0 +1,21 @@
+VMware_SuSeLinux:	 sshpass -p '1' ssh -v quathd@192.168.40.129
+hp1: sshpass -p 'gcsvn123' ssh -v int@172.18.15.97
+hp2: sshpass -p 'gcsvn123' ssh -v int@172.18.14.8
+hp3: sshpass -p 'gcsvn123' ssh -v int@172.18.12.24
+ci2: sshpass -p 'gcsvn123' ssh -v int@172.18.15.83
+ci3: sshpass -p 'gcsvn123' ssh -v int@172.18.15.80
+ci4: sshpass -p 'gcsvn123' ssh -v int@172.18.15.91
+ci5: sshpass -p 'gcsvn123' ssh -v int@172.18.15.78
+ci6: sshpass -p 'gcsvn123' ssh -v int@172.18.15.77
+ci7: sshpass -p 'gcsvn123' ssh -v int@172.18.15.88
+ci8: sshpass -p 'gcsvn123' ssh -v int@172.18.15.215
+ci9: sshpass -p 'gcsvn123' ssh -v int@172.18.15.75
+ci10: sshpass -p 'gcsvn123' ssh -v int@172.18.15.72
+ci11: sshpass -p 'gcsvn123' ssh -v int@172.18.15.74
+ci12: sshpass -p 'gcsvn123' ssh -v int@172.18.15.70
+ci13: sshpass -p 'gcsvn123' ssh -v int@172.18.15.71
+ci14: sshpass -p 'gcsvn123' ssh -v int@172.18.15.79
+ci15: sshpass -p 'gcsvn123' ssh -v int@172.18.15.84
+ci16: sshpass -p 'gcsvn123' ssh -v int@172.18.15.86
+
+
