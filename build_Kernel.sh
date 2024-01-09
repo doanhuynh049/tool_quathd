@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# git clone https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
 # Display the number of CPU cores that will be used for parallel compilation
 NUM_CORES=$(nproc)
 echo "Number of CPU cores available for compilation: $NUM_CORES"
