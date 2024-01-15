@@ -2,6 +2,7 @@ server_Melco 	sshpass -p 'gcsvn123' ssh lile@172.18.14.21
 quathd_Melco	sshpass -p '1' ssh quathd@172.18.14.21  
 myVMWare:        sshpass -p '1' ssh quathd@192.168.40.129
 quathd_server    sshpass -p '1' ssh quathd_server@172.18.25.45
+automotive_server       sshpass -p 'GCShcm!@#' ssh gcs3672@172.18.25.45
 hp1: sshpass -p 'gcsvn123' ssh -v int@172.18.15.97
 hp2: sshpass -p 'gcsvn123' ssh -v int@172.18.14.8
 hp3: sshpass -p 'gcsvn123' ssh -v int@172.18.12.24
