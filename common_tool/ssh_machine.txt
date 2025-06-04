@@ -1,0 +1,4 @@
+sshpass -p '##u3_rec' ssh 'root@192.168.2.100'
+ssh administrator@172.18.25.45
+sshpass -p '1' ssh 'administrator@172.18.25.45' 
+
